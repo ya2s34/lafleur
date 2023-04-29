@@ -8,6 +8,7 @@ switch ($action) {
     case 'supprimerUnArticle':
         $idArticle = filter_input(INPUT_GET, 'id');
         retirerDuPanier($idArticle);
+
         break;
     case 'voirPanier':
         $n = nbArticlesDuPanier();
@@ -23,16 +24,16 @@ switch ($action) {
         break;
 
     case 'ajouterAuPanier':
-        $lesArticles = [];
+        $lesArticlesDuPanier = [];
         $idArticle = filter_input(INPUT_GET, 'id');
 
-        if (!ajouterAuPanier($idArticle)) {
+        if (! ajouterAuPanier($idArticle)) {
             afficheMessage("Cet article est déjà dans le panier");
         } else {
             afficheMessage("Cet article à été ajouté");
         }
         break;
     default:
-        $lesArticles = [];
+        $lesArticlesDuPanier = [];
         break;
 }

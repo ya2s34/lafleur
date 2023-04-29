@@ -14,14 +14,15 @@ switch ($action) {
         if ($client) {
             $_SESSION['client'] = $client;
             echo 'Vous etes connectez !!';
-            header('Location: index.php');  
+            header('Location:index.php?page=accueil&action=consulter');
         }
         break;
 
     case 'deconnexionClient':
         supprimerPanier();
         unset($_SESSION['client']);
-        header('Location: index.php');
+        header('Location:index.php?page=accueil&action=consulter');
+
         die();
         break;
 
@@ -30,7 +31,8 @@ switch ($action) {
         $password = filter_input(INPUT_POST, 'mdp');
         $nom = filter_input(INPUT_POST, 'nom');
         $tel = filter_input(INPUT_POST, 'tel');
-        header('Location: index.php');
+        header('Location:index.php?page=accueil&action=consulter');
+
         $client = M_utilisateur::createUser($nom, $email, $tel, $password);
         break;
 }

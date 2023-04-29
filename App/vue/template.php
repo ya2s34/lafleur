@@ -51,9 +51,6 @@
         case 'accueil':
             include 'App/vue/v_accueil.php';
             break;
-        case 'visite':
-            include("App/vue/v_jeux.php");
-            break;
         case 'panier':
             include("App/vue/v_panier.php");
             break;
@@ -76,9 +73,6 @@
     <!-- <div class="mousemove"></div> -->
 
 </body>
-<!-- <script src="../portfolio/style/typed.js"></script>    
-
-<script src="../portfolio/style/main.js"></script> -->
-
+<script src="../lafleur_filerouge/style/main.js"></script>
 
 </html>

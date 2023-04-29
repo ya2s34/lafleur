@@ -11,7 +11,7 @@ class M_utilisateur
         };
         $pdo = AccesDonnees::getPdo();
         $password = password_hash($password, PASSWORD_BCRYPT);
-        $stmt = $pdo->prepare('INSERT INTO lf_client(nom, mail, telephone, mot_de_passe,cree_a) VALUES (:nom, :email, :tel, :password,NOW())');
+        $stmt = $pdo->prepare('INSERT INTO lf_client(nom, email, telephone, mot_de_passe,cree_a) VALUES (:nom, :email, :tel, :password,NOW())');
         $stmt->bindParam(':nom', $nom);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':tel', $tel);
@@ -37,7 +37,7 @@ class M_utilisateur
     public static function findUserMail($email, $password)
     {
         $pdo = AccesDonnees::getPdo();
-        $stmt = $pdo->prepare("SELECT * FROM lf_client WHERE mail = :email");
+        $stmt = $pdo->prepare("SELECT * FROM lf_client WHERE email = :email");
         $stmt->bindParam(":email", $email);
         $stmt->execute();
         $client = $stmt->fetch(PDO::FETCH_ASSOC);

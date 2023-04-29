@@ -17,7 +17,7 @@ class M_Exemplaire
     }
     public static function trouveTousExemplaires()
     {
-        $req = "SELECT lf_article.id_article ,lf_article.prix,lf_article.image,lf_article.id_categorie,lf_article.taille,lf_article.nom_article,lf_article.poid,lf_article.quantite_stock, lf_categorie.nom_categorie from lf_article JOIN lf_categorie ON lf_article.id_categorie=lf_categorie.id_categorie";
+        $req = "SELECT lf_article.id_article,lf_article.description ,lf_article.prix,lf_article.image,lf_article.id_categorie,lf_article.taille,lf_article.nom_article,lf_article.poid,lf_article.quantite_stock, lf_categorie.nom_categorie from lf_article JOIN lf_categorie ON lf_article.id_categorie=lf_categorie.id_categorie";
         $pdo = AccesDonnees::getPdo();
         $res = $pdo->prepare($req);
         $res->execute();
