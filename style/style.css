@@ -3,6 +3,7 @@
      margin: 0;
      box-sizing: border-box;
      font-family: 'Gothic', Arial, sans-serif;
+     scroll-behavior: smooth;
      --white: white;
      --principal_dark: #404A3E;
      --principal_light: #B0CCAB;
@@ -42,7 +43,7 @@
      color: var(--principal_dark);
      text-decoration: none;
      font-size: 1em;
-   
+
  }
 
  a {
@@ -122,13 +123,14 @@
      position: relative;
      overflow: visible;
      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-     margin-top: 20px;
+     margin-top: 79px;
      text-decoration: none;
  }
 
  .card_container a {
      text-decoration: none;
      color: var(--principal_dark);
+     margin-top: 3%;
  }
 
  .card-img {
@@ -188,10 +190,12 @@
 
  .card_container {
      display: flex;
-     justify-content: space-around;
-     margin-top: 33px;
+     justify-content: space-between;
      flex-wrap: wrap;
-     margin-bottom: 6%;
+     width: 88%;
+     margin: 0 auto;
+     padding-bottom: 6%;
+
  }
 
  /* ************************ */
@@ -369,6 +373,10 @@
      display: flex;
      justify-content: space-around;
      width: 100%;
+ }
+ .form_inscritpion{
+
+    margin-top: 3%;
  }
 
  .etape {
@@ -573,7 +581,7 @@
 
  .image_titre_produits {
      display: flex;
-     width: 82%;
+     width: 74%;
  }
 
  .image_titre_produits h3 {
@@ -614,6 +622,12 @@
 
  .img_poubelle {
      margin-top: 50px;
+     transition: ease-in .08s;
+ }
+
+ .img_poubelle:hover {
+     transition: ease-in .08s;
+     transform: scale(0.9);
  }
 
  .contain_total {
@@ -656,8 +670,501 @@
      margin-right: 10%;
  }
 
-  .btn_valider {
-    background-color: var(--secondaire_dark);
-    color: var(--white);
+ .btn_valider {
+     background-color: var(--secondaire_dark);
+     color: var(--white);
 
-  }
+ }
+
+ /* *************************************** article page */
+ .contain_articles {
+     background-image: url(../image/background.svg);
+     background-repeat: no-repeat;
+
+ }
+
+ .titre {
+     text-align: center;
+     margin-top: 50px;
+ }
+
+ .titre h1 {
+     padding-top: 50px;
+     font-weight: normal;
+     margin-bottom: 32px;
+ }
+
+ .contain_header_articles {
+     background-color: var(--secondaire_dark);
+     color: var(--white);
+ }
+
+ .contain_btn {
+     display: flex;
+     justify-content: center;
+     color: var(--white);
+ }
+
+ .contain_btn a {
+     background-color: var(--secondaire_light);
+     padding: 10px;
+     margin: 49px;
+     border-radius: 15px;
+     width: 15%;
+     box-shadow: var(--card_shadow);
+
+ }
+
+ .evenement_tri {
+     margin-left: 50px;
+ }
+
+ #evenements {
+     border: none;
+     border-radius: 12px;
+     padding: 8px;
+     background-color: var(--secondaire_light);
+     box-shadow: var(--card_shadow);
+     color: var(--principal_dark);
+     margin-bottom: 10px;
+     cursor: pointer;
+ }
+
+ .event {
+     cursor: pointer;
+ }
+
+ .a {
+     cursor: pointer;
+ }
+
+ .title_livr {
+     margin-top: 100px;
+     background-color: var(--principal_dark);
+     color: var(--white);
+     width: 33%;
+     padding: 18px;
+     text-align: center;
+     border-top-right-radius: 15px;
+     border-bottom-right-radius: 15px;
+ }
+
+/* ********************************** formuliare  ***************************************** */
+
+
+
+input::placeholder {
+    font-size: var(--text-s);
+}
+
+textarea::placeholder {
+    font-size: var(--text-s);
+}
+
+/***** Formulaire d'inscription *****/
+.inscription-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inscription-title {
+    display: block;
+    text-align: center;
+    font-weight: 600;
+    font-size: calc(var(--primary-title-s) * 0.75);
+    margin-bottom: 40px;
+}
+
+@media screen and (min-width: 768px) {
+    .inscription-title {
+        display: block;
+        text-align: center;
+        font-weight: 600;
+        font-size: calc(var(--primary-title-s) * 0.75);
+        margin: 55px;
+    }
+}
+
+.inscription-label {
+    text-transform: uppercase;
+    font-weight: 500;
+    margin: auto 20px;
+}
+
+.inscription-span {
+    color: var(--secondary-color-intense);
+}
+
+.inscription-input {
+    border: 1px solid #d9d9d9;
+    width: 90vw;
+    height: 35px;
+    margin: 10px auto 25px;
+    flex-grow: 1;
+    box-shadow: 0 0 2px var(--shadow);
+}
+
+.inscription-message {
+    border: 1px solid #d9d9d9;
+    width: 90vw;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    flex-grow: 1;
+    margin: 10px auto 25px;
+    resize: none;
+    outline: none;
+    box-shadow: 0 0 2px var(--shadow);
+}
+
+/* input color behaviour */
+.inscription-message:focus,
+.inscription-input:focus,
+.inscription-message:hover,
+.inscription-input:hover {
+    outline: 1px solid var(--primary-color-dark);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 50%);
+}
+
+.inscription-message:invalid:focus,
+.inscription-input:invalid:focus {
+    outline: 1px solid red;
+}
+
+.inscription-message:valid:focus,
+.inscription-input:valid:focus {
+    outline: 1px solid green;
+}
+
+.inscription-message::placeholder,
+.inscription-input::placeholder {
+    color: var(--primary-color);
+    font-family: Inter;
+    padding: 5px 15px;
+}
+
+/* input style & sizing */
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.inscription-label-legend {
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.checkbox-list-wrapper ul {
+    margin: 30px 0 50px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.checkbox-list-wrapper li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-left: 20%;
+    margin-bottom: 30px;
+}
+
+.inscription-label-checkbox {
+    display: inline-block;
+    text-transform: capitalize;
+    font-weight: 500;
+    padding: 0 20px;
+    font-size: var(--text-s);
+}
+
+.inscription-label-checkbox span {
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* Bouton submit */
+.submit-wrapper {
+    width: 95%;
+    margin: 10px auto 40px auto;
+}
+
+.block-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.block-button button {
+    background-color: #ffae85;
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    border: none;
+    padding: 15px 0;
+}
+
+@media screen and (min-width: 768px) {
+    .form_inscritpion {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .inscription-input,
+    .inscription-message {
+        width: auto;
+        margin: 15px 0;
+    }
+
+    .inscription-label {
+        margin: 10px 0 0px;
+    }
+
+    .input-wrapper {
+        width: 45%;
+    }
+
+    .input-wrapper-full {
+        width: 95%;
+        justify-self: center;
+    }
+
+    .checkbox-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+    }
+
+    .checkbox-list-wrapper li {
+        margin-left: 0;
+    }
+
+    .block-button button {
+        width: 80vw;
+    }
+}
+ .tt_infos {
+     color: var(--white);
+     background-color: var(--principal);
+     padding: 18px;
+     border-radius: 15px;
+     width: 40%;
+     margin: 5%;
+     text-align: center;
+ }
+
+
+ .prgm_livre {
+     margin-left: 50%;
+ }
+
+ .livr_mtn {
+     border: none;
+     padding: 15px;
+     background-color: var(--secondaire_dark);
+     color: white;
+     margin-top: 5%;
+     margin-bottom: 5%;
+     border-radius: 15px;
+ }
+
+ .ville {
+     border: none;
+     padding: 5px;
+     background-color: var(--secondaire_dark);
+     color: white;
+     margin-top: 5%;
+     margin-bottom: 5%;
+     border-radius: 15px;
+ }
+
+
+ /* **************************************** SHOW ONE *************************** */
+
+
+
+
+ .container_unarticle {
+     background-image: url(../image/background.svg);
+     background-repeat: no-repeat;
+     background-size: cover;
+ }
+
+ .tt_art {
+     text-align: center;
+     color: var(--secondaire_dark);
+     padding: 51px 0;
+     margin-bottom: 4%;
+     margin-top: 2%;
+
+ }
+
+ .caract_titre {
+     text-align: center;
+     color: var(--secondaire_dark);
+     padding: 51px 0;
+     margin-bottom: 4%;
+     margin-top: 2%;
+     margin-left: 53%;
+ }
+
+ .img_article {
+     width: 40%;
+     height: 25%;
+     margin-left: 8%;
+     margin-bottom: 8%;
+     border-radius: 15px;
+ }
+
+ .image_caracteristique {
+     display: flex;
+ }
+
+ /* Style de base pour le tableau */
+ table {
+     border-collapse: collapse;
+     width: 100%;
+     text-align: center;
+     margin-top: 20px;
+     margin-left: 38%;
+     margin-bottom: 67%;
+ }
+
+ th,
+ td {
+     border: 1px solid #ddd;
+     padding: 8px;
+ }
+
+ th {
+     background-color: var(--secondaire_dark);
+     color: var(--white);
+     font-weight: bold;
+ }
+
+ /* Ajout de bandes alternées pour les lignes du tableau */
+ tr:nth-child(even) {
+     background-color: var(--secondaire_dark);
+     color: var(--white);
+ }
+
+
+ /* Style pour la div "caract" */
+ .caract {
+     width: 30%;
+     margin-left: 20px;
+ }
+
+
+
+ .btn_panier {
+     text-align: center;
+     color: var(--secondaire_dark);
+     padding: 51px 0;
+     margin-bottom: 4%;
+     margin-top: -32%;
+     margin-left: 79%;
+ }
+
+ .ajt_panier {
+     position: absolute;
+     right: 15%;
+     background-color: var(--secondaire_dark);
+     padding: 20px;
+     border-radius: 16px;
+     color: white;
+     box-shadow: var(--card_shadow);
+ }
+
+ .desc {
+     margin-right: 49%;
+     text-align: center;
+     padding-bottom: 10%;
+ }
+
+
+ /* 
+ lotterie */
+
+ .container {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+ }
+
+ .machine {
+     display: flex;
+     border: 5px solid #BFCAB8;
+     padding: 20px;
+     background-color: #fff;
+ }
+
+ .slot {
+     position: relative;
+     width: 100px;
+     height: 100px;
+     border: 2px solid #658976;
+     margin-right: 10px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .symbol {
+     font-size: 2em;
+ }
+
+ button {
+     display: block;
+     margin-top: 20px;
+     padding: 10px 20px;
+     font-size: 16px;
+     border: none;
+     background-color: #BFCAB8;
+     color: #fff;
+     cursor: pointer;
+ }
+
+ button:hover {
+     background-color: #658976;
+ }
+
+ .slot.animate .symbol {
+     animation: spin 2s ease-in-out;
+ }
+
+ /* Ajout des classes pour les slots gagnants */
+ .slot.winner1 {
+     background-color: gold;
+ }
+
+ .slot.winner2 {
+     background-color: gold;
+ }
+
+ .slot.winner3 {
+     background-color: gold;
+ }
+
+ @keyframes spin {
+     0% {
+         transform: rotateX(0);
+     }
+
+     50% {
+         transform: rotateX(720deg);
+     }
+
+     100% {
+         transform: rotateX(1440deg);
+     }
+ }
+
+ 

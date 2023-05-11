@@ -34,11 +34,11 @@
             <div class="prix_titre_contain">
                 <div class="quantite_prix">
                     <p>Quantité</p>
-                    <input type="number" name="quantite" id="quantite_<?= $unArticle['id_article'] ?>" min="1" value="1" onchange="updateTotal(<?= $prix_article ?>, <?= $unArticle['id_article'] ?>)">
+                    <input type="number" name="quantite" max="<?= $unArticle['quantite_stock'] ?>" id="quantite_<?= $unArticle['id_article'] ?>" min="1" value="1" onchange="updateTotal(<?= $prix_article ?>, <?= $unArticle['id_article'] ?>)">
                 </div>
                 <div class="quantite_prix">
                     <p>Prix</p>
-                    <p class="prix" id="prix_<?= $unArticle['id_article'] ?>"><?= $prix_article ?></p>
+                    <p class="prix" id="prix_<?= $unArticle['id_article'] ?>"><?= $prix_article ?>€</p>
                     <a href="index.php?uc=panier&id=<?= $unArticle['id_article'] ?>&action=supprimerUnArticle" onclick="return confirm('Voulez-vous vraiment retirer ce jeu ?');">
                         <img class="img_poubelle" src="image/panier/poubelle.svg" alt="logo_supprimer">
                     </a>
@@ -65,8 +65,85 @@
 
 
     <div class="boite_btn">
-        <a href=""><input class="btn_continue" type="submit" value="Continuer mon shopping"></a>
-        <a href=""><input class="btn_valider" type="submit" value="Poursuivre la commande"></a>
+        <a class="a" href="index.php?uc=visite&action=voirFleur&type=Fleurs"><input class="btn_continue" type="submit" value="Continuer mon shopping"></a>
+        <a class="a" href="#poursuivre"><input class="btn_valider" type="submit" value="Poursuivre la commande"></a>
     </div>
 
+    <div class="title_livr">
+        <h1>LIVRAISON</h1>
+    </div>
+
+
+    <section class="contact grid__section">
+        <h3 id="poursuivre" class="visibility-hidden tt_infos">ENTREZ VOS INFORMATIONS</h3>
+
+        <div class="inscription-wrapper" id="inscription-form-link">
+            <?php
+            if (isset($client['id_client'])) {
+                $date = new DateTime();
+                $tomorrow = $date->add(DateInterval::createFromDateString('1 day'))->format("Y-m-d");
+                $max = $date->add(DateInterval::createFromDateString('365 day'))->format("Y-m-d");
+            ?>
+                <form class="form_inscritpion" action="index.php?uc=passerCommande&action=passerCommande" method="POST">
+                    <div class="input-wrapper">
+                        <label for="inscription-last-adresse" class="inscription-label">Adresse
+                            <span class="inscription-span"></span></label>
+                        <input type="text" name="inscription-last-adresse" id="inscription-last-adresse" class="inscription-input" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="inscription-first-ville" class="inscription-label">Ville
+                            <span class="inscription-span"></span>
+                        </label>
+                        <select name="ville" id="inscription-first-ville" class="ville inscription-input" required>
+                            <option value="">Sélectionnez une ville</option>
+                            <?php foreach ($tousVilles as $ville) : ?>
+                                <option value="<?= $ville['id_ville'] ?>"><?= $ville['nom'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label for="inscription-post" class="inscription-label">Code postal
+                            <span class="inscription-span"></span></label>
+                        <input type="tel" name="inscription-post" id="inscription-post" class="inscription-input" pattern="^(F-)?((2[A|B])|[0-9]{2})[0-9]{3}$" required>
+                    </div>
+
+
+                    <div class="input-wrapper ">
+                        <label for="livraison">LIVRAISON</label>
+                        <select class="livr_mtn" name="livraison" id="livraison">
+                            <option class="notProgramee" value="<?= $tomorrow ?>" default>Livraison dans 24h</option>
+                            <option class="programee" value="<?= $tomorrow ?>">Livraison programmée</option>
+                        </select>
+                    </div>
+
+                    <div class="input-wrapper prgm_livre" id="date-livraison-wrapper" style="display: none;">
+                        <label for="date-livraison">Date de livraison programmée</label>
+                        <input type="date" min="<?= $tomorrow ?>" max="<?= $max ?>" value="<?= $tomorrow ?>" name="date-livraison" id="date-livraison">
+                    </div>
+
+                    <div class="block-button">
+                        <button type="submit" class="button">
+                            VALIDER LA COMMANDE
+                        </button>
+                    </div>
+
+                    <div class="total_prix">
+                        <p>TOTAL : </p>
+                        <span id="prix_total"><?= $total ?></span>€<!-- affichage de la variable $total pour afficher le total des prix des articles dans le panier -->
+                    </div>
+
+
+
+                </form>
+            <?php
+            }
+            ?>
+
+    </section>
+
+    <?php
+    include 'common/footer.php'
+    ?>
 </section>

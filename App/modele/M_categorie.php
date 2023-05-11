@@ -10,7 +10,7 @@ class M_Categorie
      */
     public static function trouveLesCategories()
     {
-        $req = "SELECT * FROM categories";
+        $req = "SELECT * FROM lf_categorie";
         $res = AccesDonnees::query($req);
         $lesLignes = $res->fetchAll();
         return $lesLignes;

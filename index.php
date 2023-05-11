@@ -9,9 +9,6 @@ if (!empty($_SESSION['client'])) {
     $clientSess = $_SESSION['client'];
 }
 
-
-
-
 // Pour afficher les erreurs PHP
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
@@ -35,8 +32,21 @@ switch ($uc) {
     case 'accueil':
         include 'App/controleur/c_consultation.php';
         break;
+    case 'visite':
+        $type = filter_input(INPUT_GET, "type");
+        include 'App/controleur/c_consultation.php';
+        break;
     case 'panier':
         include 'App/controleur/c_gestionPanier.php';
+        break;
+    case 'passerCommande':
+        include 'App/controleur/c_passerCommande.php';
+        break;
+        
+    case 'lotterie':
+        include 'App/controleur/c_consultation.php';
+        include 'App/controleur/c_passerCommande.php';
+
         break;
     case 'commander':
         $idClient = filter_input(INPUT_GET, 'idClient');
@@ -44,6 +54,9 @@ switch ($uc) {
         break;
     case 'administrer':
         include 'App/controleur/c_monCompte.php';
+        break;
+    case 'article':
+        include 'App/controleur/c_consultation.php';
         break;
     case 'authentification':
         include 'App/controleur/c_authentification.php';

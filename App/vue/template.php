@@ -19,14 +19,13 @@
         <nav id="menu">
             <ul>
                 <li><a href="index.php?page=accueil&action=consulter">ACCUEIL</a></li>
-                <li><a href="index.php?page=fleurs">FLEURS</a></li>
-                <li><a href="index.php?page=bouquets">BOUQUETS</a></li>
+                <li><a href="index.php?uc=visite&action=voirFleur&type=Fleurs">FLEURS / BOUQUETS</a></li>
                 <li><a href="index.php?uc=panier&action=voirPanier">PANIER</a></li>
                 <li><a href="index.php?page=contactblog">CONTACT & BLOG</a></li>
                 <?php
                 $client = isset($_SESSION['client']) ? $_SESSION['client'] : false;
                 if (!$client) {
-                    echo "<li><a href='index.php?uc=authentification&action=connexionClient'>Connexion </a></li>";
+                    echo "<li><a href='index.php?uc=authentification'>Connexion </a></li>";
                     echo "<li><a href = 'index.php?uc=inscription'> Inscription </a></li>";
                 } else {
                     echo '<li><a href="index.php?uc=compte"> Information personelle </a></li>';
@@ -34,10 +33,6 @@
                     "Vous etes connecter !";
                 }
                 ?>
-                <div>
-                    <a href=""><img class="util_icone panier" src="image/navbar/panier.svg" alt="Panier"></a>
-                    <a href=""><img class="util_icone recherche" src="image/navbar/search.svg" alt="Recherche"></a>
-                </div>
 
             </ul>
         </nav>
@@ -57,8 +52,17 @@
         case 'commander':
             include("App/vue/v_commande.php");
             break;
+        case 'visite':
+            include("App/vue/v_fleur.php");
+            break;
         case 'compte':
             include("App/vue/v_compte.php");
+            break;
+        case 'article':
+            include("App/vue/v_article.php");
+            break;
+        case 'lotterie':
+            include("App/vue/v_lotterie.php");
             break;
         case 'authentification':
             include("App/vue/v_authentification.php");

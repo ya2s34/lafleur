@@ -9,35 +9,32 @@
           <div>
               <h3 class="tt_ventes">LES MEILLEURS VENTES</h3>
           </div>
-        <?php
-        include'common/accueil/bestsellers_acc.php'
-        ?>
+          <?php
+            include 'common/accueil/bestsellers_acc.php'
+            ?>
           <div class="choice_event_title">
               <h1>CHOISISSEZ VOS ARTICLES SELON VOS EVENEMENTS</h1>
           </div>
 
           <div class="parent">
 
-              <a class="div1" href="">
+              <a class="div1" href="index.php?uc=visite&action=filtrerEvenement&type=Fleurs&id_evenement=2">
 
               </a>
-              <a class=" div2" href="">
+              <a class=" div2" href="index.php?uc=visite&action=filtrerEvenement&type=Fleurs&id_evenement=3">
 
               </a>
-              <a class="div3" href="">
+              <a class="div3" href="index.php?uc=visite&action=filtrerEvenement&type=Fleurs&id_evenement=1">
 
               </a>
-              <a class="div4" href="">
+              <a class="div4" href="index.php?uc=visite&action=filtrerEvenement&type=Fleurs&id_evenement=4">
 
               </a>
-              <a class="div5" href="">
+              <a class="div5" href="index.php?uc=visite&action=filtrerEvenement&type=Fleurs&id_evenement=5">
               </a>
           </div>
           <?php
             include 'common/accueil/fleur_acc.php';
-            ?>
-          <?php
-            include 'common/accueil/bouquets_acc.php';
             ?>
 
           <div class="choice_event_title">
@@ -94,6 +91,9 @@
                   Les livraisons sont limitées à Loumarin et aux alentours de ce village. Les livraisons sont facturées 2,99 euros, pour chaque commande inférieure à 50 euros. Au-delà de ce montant, les livraisons sont gratuites. Le délai de livraison est d'un jour. Vous pouvez demander à être livré un autre jour, c’est alors une livraison programmée.Vous en saurez plus sur votre livraison une fois vos achat validées !
               </p>
           </div>
+
+
+          
           <?php
             include 'common/footer.php'
             ?>

@@ -21,6 +21,7 @@ function initPanier()
 function supprimerPanier()
 {
     unset($_SESSION['articles']);
+
 }
 
 /**
@@ -32,10 +33,17 @@ function supprimerPanier()
  * @param $idArticle : identifiant de jeu
  * @return vrai si le jeu n'était pas dans la variable, faux sinon 
  */
-function ajouterAuPanier($idArticle)
+function ajouterAuPanier($idArticle, $uc)
 {
     $_SESSION['articles'][] = $idArticle;
+
+    if ($uc= 'accueil') {
+        header('Location:index.php?uc=panier&action=voirPanier');
+    } elseif ($uc = 'visite') {
+        header('Location:index.php?uc=panier&action=voirPanier');
+    }
 }
+
 
 /**
  * Retourne les articles du panier
@@ -72,10 +80,15 @@ function nbArticlesDuPanier()
  * @param $idProduit : identifiant de jeu
 
  */
-function retirerDuPanier($idProduit)
+function retirerDuPanier($idProduit, $uc)
 {
     $index = array_search($idProduit, $_SESSION['articles']);
     unset($_SESSION['articles'][$index]);
+    if ($uc = 'panier') {
+        header('Location:index.php?uc=panier&action=voirPanier');
+    } elseif ($uc = 'visite') {
+        header('Location:index.php?uc=panier&action=voirPanier');
+    }
 }
 
 /**

@@ -13,8 +13,10 @@ switch ($action) {
 
         if ($client) {
             $_SESSION['client'] = $client;
-            echo 'Vous etes connectez !!';
+            echo 'Vous etes connecté !!';
             header('Location:index.php?page=accueil&action=consulter');
+        } else {
+            $_SESSION['erreur'] = 'Veuillez saisir des informations correctes !';
         }
         break;
 
@@ -22,8 +24,6 @@ switch ($action) {
         supprimerPanier();
         unset($_SESSION['client']);
         header('Location:index.php?page=accueil&action=consulter');
-
-        die();
         break;
 
     case 'inscriptionClient':

@@ -2,8 +2,11 @@
     <?php
     foreach ($lesArticles as $unArticle) {
     ?>
-        <a href="">
-            <div class="card">
+        <?php
+        if ($unArticle['nom_categorie'] = 'Fleurs') {
+        ?>
+            <a href="index.php?uc=article&action=voirArticle&id=<?= $unArticle['id_article'] ?>"">
+                <div class=" card">
                 <div class="card-img"> <img class=" img_card" src="../lafleur_filerouge/image/<?= $unArticle['image'] ?>" alt="Image produits">
                 </div>
                 <div class="card-info">
@@ -11,7 +14,7 @@
                     <p class="text-body"><?= $unArticle['description'] ?></p>
                 </div>
                 <div class="card-footer">
-                    <span class="text-title"><?= $unArticle['prix'] ?></span>
+                    <span class="text-title"><?= $unArticle['prix'] ?>€</span>
                     <?php if (!$client) : ?>
                         <!-- Code à exécuter si $client est faux -->
                         <a href="index.php?uc=authentification">
@@ -38,9 +41,10 @@
                     <?php endif; ?>
 
                 </div>
-            </div>
-        </a>
-    <?php
+</div>
+</a>
+<?php
+        }
     }
-    ?>
+?>
 </div>

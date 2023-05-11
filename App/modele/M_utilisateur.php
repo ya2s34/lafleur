@@ -3,6 +3,26 @@
 class M_utilisateur
 {
 
+    /**
+     * récupere les informations de l'utilisateur dans la bdd
+     *
+     * @param string $email
+     * @param string $password
+     * @return array|false
+     */
+    public static function findUserMail($email, $password)
+    {
+        $pdo = AccesDonnees::getPdo();
+        $stmt = $pdo->prepare("SELECT * FROM lf_client WHERE email = :email");
+        $stmt->bindParam(":email", $email);
+        $stmt->execute();
+        $client = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($client && password_verify($password, $client["mot_de_passe"])) {
+            return $client;
+        }
+        return false;
+    }
+
 
     public static function createUser($nom, $email, $tel, $password)
     {
@@ -34,18 +54,6 @@ class M_utilisateur
 
 
 
-    public static function findUserMail($email, $password)
-    {
-        $pdo = AccesDonnees::getPdo();
-        $stmt = $pdo->prepare("SELECT * FROM lf_client WHERE email = :email");
-        $stmt->bindParam(":email", $email);
-        $stmt->execute();
-        $client = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($client && password_verify($password, $client["mot_de_passe"])) {
-            return $client;
-        }
-        return false;
-    }
 
     public static function estValide($nom, $email, $tel, $password)
     {
