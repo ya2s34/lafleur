@@ -101,37 +101,33 @@
                             <?php endforeach; ?>
                         </select>
 
+
                     </div>
 
-                    <div class="input-wrapper">
-                        <label for="inscription-post" class="inscription-label">Code postal
-                            <span class="inscription-span"></span></label>
-                        <input type="tel" name="inscription-post" id="inscription-post" class="inscription-input" pattern="^(F-)?((2[A|B])|[0-9]{2})[0-9]{3}$" required>
+                    <div class="input-wrapper prgm_livre" id="date-livraison-wrapper">
+                        <label for="date-livraison">Date de livraison</label>
+                        <input class="livr" type="date" min="<?= $tomorrow ?>" max="<?= $max ?>" value="<?= $tomorrow ?>" name="date-livraison" id="date-livraison">
                     </div>
 
-
-                    <div class="input-wrapper ">
-                        <label for="livraison">LIVRAISON</label>
-                        <select class="livr_mtn" name="livraison" id="livraison">
-                            <option class="notProgramee" value="<?= $tomorrow ?>" default>Livraison dans 24h</option>
-                            <option class="programee" value="<?= $tomorrow ?>">Livraison programmée</option>
-                        </select>
-                    </div>
-
-                    <div class="input-wrapper prgm_livre" id="date-livraison-wrapper" style="display: none;">
-                        <label for="date-livraison">Date de livraison programmée</label>
-                        <input type="date" min="<?= $tomorrow ?>" max="<?= $max ?>" value="<?= $tomorrow ?>" name="date-livraison" id="date-livraison">
-                    </div>
 
                     <div class="block-button">
                         <button type="submit" class="button">
                             VALIDER LA COMMANDE
                         </button>
-                    </div>
 
-                    <div class="total_prix">
-                        <p>TOTAL : </p>
-                        <span id="prix_total"><?= $total ?></span>€<!-- affichage de la variable $total pour afficher le total des prix des articles dans le panier -->
+
+
+                    </div>
+                    <?php
+                    if ($total > 50) {
+                        $prixLivraison = 'Gratuit';
+                    } else {
+                        $prixLivraison = '2.99€';
+                    }
+                    ?>
+
+                    <div class="prix_livre">
+                        <p>Prix livraison : <?= $prixLivraison ?></p>
                     </div>
 
 

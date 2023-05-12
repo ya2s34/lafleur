@@ -8,52 +8,56 @@
 class M_Commande
 {
 
-
-    public static function creerCommande($idClient, $listeArticles, $date_livraison, $lf_id_prix_livraison, $lf_id_lotterie, $lf_id_status_livraison, $lf_id_ville)
+    public static function creerCommande($idClient, $listeArticles, $lf_id_lotterie, $lf_id_ville, $date_livraison)
     {
-   
         $pdo = AccesDonnees::getPdo();
 
-        // Étape 1 : Insérer les données dans la table lf_commande_client
-        $stmt = $pdo->prepare("INSERT INTO lf_commande_client (date_commande, date_livraison, status_livraison, lf_id_prix_livraison, lf_id_lotterie, lf_id_client, lf_id_ville) 
-VALUES (NOW(), :date_livraison, :status_livraison, :lf_id_prix_livraison, :lf_id_lotterie, :lf_id_client, :lf_id_ville)");
-        $stmt->bindParam(":lf_id_client", $idClient);
-        $stmt->bindParam(":lf_id_ville", $lf_id_ville);
-        $stmt->bindParam(":date_livraison", $date_livraison);
-        $stmt->bindParam(":lf_id_prix_livraison", $lf_id_prix_livraison);
-        $stmt->bindParam(":lf_id_lotterie", $lf_id_lotterie);
-        $stmt->bindParam(":status_livraison", $lf_id_status_livraison);
-        $stmt->execute();
+        // Commence une transaction
+        $pdo->beginTransaction();
 
-        // Récupérer l'ID de la commande créée
-        $commandeId = $pdo->lastInsertId();
+        try {
+            // Étape 1 : Insérer les données dans la table lf_commande_client
+            $stmt1 = $pdo->prepare("INSERT INTO lf_commande_client (date_commande, lf_id_lotterie, lf_id_client, lf_id_ville,date_livraison) 
+        VALUES (NOW(), :lf_id_lotterie, :lf_id_client, :lf_id_ville,:date_livraison)");
+            $stmt1->bindParam(":lf_id_client", $idClient);
+            $stmt1->bindParam(":date_livraison", $date_livraison);
+            $stmt1->bindParam(":lf_id_ville", $lf_id_ville);
+            $stmt1->bindParam(":lf_id_lotterie", $lf_id_lotterie);
+                $stmt1->execute();
 
-        // Étape 2 : Insérer les articles de la commande dans la table lf_ligne_commande_client
-        foreach ($listeArticles as $article) {
-            $stmt = $pdo->prepare("INSERT INTO lf_ligne_commande_client (lf_id_commande_client, lf_id_article) VALUES (:lf_id_commande_client, :lf_id_article)");
-            $stmt->bindParam(":lf_id_commande_client", $commandeId);
-            $stmt->bindParam(":lf_id_article", $article['id_article']);
-            $stmt->execute();
+            // Récupérer l'ID de la commande créée
+            $commandeId = $pdo->lastInsertId();
+
+            // Étape 2 : Insérer les articles de la commande dans la table lf_ligne_commande_client
+            foreach ($listeArticles as $article) {
+                $stmt2 = $pdo->prepare("INSERT INTO lf_ligne_commande_client (lf_id_commande_client, lf_id_article) VALUES (:lf_id_commande_client, :lf_id_article)");
+                $stmt2->bindParam(":lf_id_commande_client", $commandeId);
+                $stmt2->bindParam(":lf_id_article", $article['id_article']);
+                // var_dump($article);die;
+                $stmt2->execute();
+            }
+
+            // Si tout se passe bien, valide la transaction
+            $pdo->commit();
+        } catch (Exception $e) {
+            // Une erreur s'est produite, annule la transaction
+            $pdo->rollBack();
+            throw $e;  // Lancer à nouveau l'exception pour la gérer plus haut dans la pile d'appels
         }
-
-        // Retourner les informations de la commande
-        $lesCommandes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $lesCommandes;
     }
 
 
     public static function afficherCommande($idClient)
     {
         $pdo = Accesdonnees::getPdo();
-        $stmt = $pdo->prepare("SELECT exemplaires.*, commandes.*, client.*
-        FROM client
-        JOIN commandes ON commandes.client_id = client.id
-        JOIN lignes_commande ON lignes_commande.commande_id = commandes.id
-        JOIN exemplaires ON exemplaires.id = lignes_commande.exemplaire_id
+        $stmt = $pdo->prepare("SELECT lf_article.*, lf_commande_client.*, lf_client.*
+        FROM lf_client
+        JOIN lf_commande_client ON lf_commande_client.lf_id_client = lf_client.id_client
+        JOIN lf_ligne_commande_client ON lf_ligne_commande_client.lf_id_commande_client = lf_commande_client.id_commande_client
+        JOIN lf_article ON lf_article.id_article = lf_ligne_commande_client.lf_id_article
      
-        WHERE client.id = :clientId
-        ORDER BY commandes.id DESC");
+        WHERE lf_client.id_client = :clientId
+        ORDER BY lf_commande_client.lf_id_client DESC");
         $stmt->bindParam(":clientId", $idClient);
         $stmt->execute();
         $lesCommandes = $stmt->fetchAll(PDO::FETCH_ASSOC);

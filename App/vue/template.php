@@ -21,15 +21,15 @@
                 <li><a href="index.php?page=accueil&action=consulter">ACCUEIL</a></li>
                 <li><a href="index.php?uc=visite&action=voirFleur&type=Fleurs">FLEURS / BOUQUETS</a></li>
                 <li><a href="index.php?uc=panier&action=voirPanier">PANIER</a></li>
-                <li><a href="index.php?page=contactblog">CONTACT & BLOG</a></li>
+                <li><a href="index.php?page=accueil&action=consulter">BLOG</a></li>
                 <?php
                 $client = isset($_SESSION['client']) ? $_SESSION['client'] : false;
                 if (!$client) {
-                    echo "<li><a href='index.php?uc=authentification'>Connexion </a></li>";
-                    echo "<li><a href = 'index.php?uc=inscription'> Inscription </a></li>";
+                    echo "<li><a href='index.php?uc=authentification'>CONNEXION </a></li>";
+                    echo "<li><a href = 'index.php?uc=inscription'> INSCRIPTION </a></li>";
                 } else {
-                    echo '<li><a href="index.php?uc=compte"> Information personelle </a></li>';
-                    echo "<li><a href='index.php?uc=authentification&action=deconnexionClient'> Se déconnecter </a></li>";
+                    echo '<li><a href="index.php?uc=compte"> MON COMPTE </a></li>';
+                    echo "<li><a href='index.php?uc=authentification&action=deconnexionClient'> SE DECONNECTER </a></li>";
                     "Vous etes connecter !";
                 }
                 ?>
@@ -42,6 +42,8 @@
     <?php
     // Controleur de vues
     // Selon le cas d'utilisation, j'inclus un controleur ou simplement une vue
+    // include_once '../lafleur_filerouge/common/menu_burger.php';
+
     switch ($uc) {
         case 'accueil':
             include 'App/vue/v_accueil.php';

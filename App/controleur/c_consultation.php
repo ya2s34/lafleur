@@ -1,5 +1,5 @@
 <?php
-include 'App/modele/M_Exemplaire.php';
+include_once 'App/modele/M_Exemplaire.php';
 include 'App/modele/M_Evenement.php';
 include 'App/modele/M_Categorie.php';
 include 'App/modele/M_Couleur.php';
@@ -61,14 +61,15 @@ switch ($action) {
 
     case 'play':
         $prizes = M_lotterie::getPrizes();
+        
 
         foreach ($prizes as $prize) {
             if ($prize['lot'] == "Stylo") {
-                $styloId = $prize['_lotterie'];
+                $styloId = $prize['id_lotterie'];
                 $stylo = $prize['lot'];
                 $styloQty = $prize['quantite'];
             }
-            if ($prize['lot'] == "Sac réutilisable tissu ") {
+            if ($prize['lot'] == "Sac réutilisable tissu") {
                 $sacId = $prize['id_lotterie'];
                 $sac = $prize['lot'];
                 $sacQty = $prize['quantite'];

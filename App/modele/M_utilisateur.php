@@ -24,15 +24,16 @@ class M_utilisateur
     }
 
 
-    public static function createUser($nom, $email, $tel, $password)
+    public static function createUser($nom,$prenom, $email, $tel, $password)
     {
         if ($erreurs = static::estValide($nom, $email, $tel, $password)) {
             return $erreurs;
         };
         $pdo = AccesDonnees::getPdo();
         $password = password_hash($password, PASSWORD_BCRYPT);
-        $stmt = $pdo->prepare('INSERT INTO lf_client(nom, email, telephone, mot_de_passe,cree_a) VALUES (:nom, :email, :tel, :password,NOW())');
+        $stmt = $pdo->prepare('INSERT INTO lf_client(nom, prenom, email, telephone, mot_de_passe,cree_a) VALUES (:nom, :prenom, :email, :tel, :password,NOW())');
         $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':prenom', $prenom);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':tel', $tel);
         $stmt->bindParam(':password', $password);

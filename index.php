@@ -45,7 +45,6 @@ switch ($uc) {
         
     case 'lotterie':
         include 'App/controleur/c_consultation.php';
-        include 'App/controleur/c_passerCommande.php';
 
         break;
     case 'commander':
