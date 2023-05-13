@@ -1,3 +1,12 @@
+let menuBurger = document.querySelector(".svg_burger");
+let ul = document.querySelector(".nav-links");
+menuBurger.addEventListener("click", (e) => {
+ul.classList.toggle("open");
+
+});
+
+
+
 function updateTotal(prix, id_article) {
   var quantite = document.getElementById("quantite_" + id_article).value;
   var prix_total_article = prix * quantite;
@@ -15,11 +24,10 @@ function updatePrixTotal() {
   document.getElementById("prix_total").textContent = total.toFixed(2);
 }
 
-
 // id, name & quantity left of each prize
 const styloId = "<?php echo $styloId ?>";
 const stylo = "<?php echo $stylo ?>";
-const styloQty =1000;
+const styloQty = 1000;
 
 const sacId = "<?php echo $sacId ?>";
 const sac = "<?php echo $sac ?>";
@@ -35,7 +43,7 @@ const roseQty = 100;
 
 const bouquetId = "<?php echo $bouquetId ?>";
 const bouquet = "<?php echo $bouquet ?>";
-const bouquetQty =50;
+const bouquetQty = 50;
 
 const playButton = document.getElementById("play");
 const symbols = document.querySelectorAll(".symbol");
@@ -47,12 +55,12 @@ playButton.addEventListener("click", () => {
   playButton.parentNode.replaceChild(a, playButton);
 
   let items = [
-            { emoji: "🖊️", quantity: styloQty, id: styloId }, //stylo
-            { emoji: "👜", quantity: sacQty, id: sacId },  //sac réutilisable
-            { emoji: "🔑", quantity: cleQty, id: cleId }, //porte-clé
-            { emoji: "🌹", quantity: roseQty, id: roseId },  //rose rouge
-            { emoji: "💐", quantity: bouquetQty, id: bouquetId }  //bouquet de roses
-          ];
+    { emoji: "🖊️", quantity: styloQty, id: styloId }, //stylo
+    { emoji: "👜", quantity: sacQty, id: sacId }, //sac réutilisable
+    { emoji: "🔑", quantity: cleQty, id: cleId }, //porte-clé
+    { emoji: "🌹", quantity: roseQty, id: roseId }, //rose rouge
+    { emoji: "💐", quantity: bouquetQty, id: bouquetId }, //bouquet de roses
+  ];
 
   const totalquantity = items.reduce((total, item) => total + item.quantity, 0);
 
@@ -75,23 +83,24 @@ playButton.addEventListener("click", () => {
       switch (emojis[0]) {
         case "🖊️":
           winMessage = "Bravo, vous avez gagné un porte-clé “Lafleur”!";
-          a.href = "index.php?uc=accueil&action=consulter&id="+items[0].id;
+          a.href = "index.php?uc=accueil&action=consulter&id=" + items[0].id;
           break;
         case "👜":
-          winMessage = "Bravo, vous avez gagné un sac réutilisable en tissu “Lafleur”!";
-          a.href = "index.php?uc=accueil&action=consulter&id="+items[1].id;
+          winMessage =
+            "Bravo, vous avez gagné un sac réutilisable en tissu “Lafleur”!";
+          a.href = "index.php?uc=accueil&action=consulter&id=" + items[1].id;
           break;
         case "🔑":
           winMessage = "Bravo, vous avez gagné un porte-clés “Lafleur”!";
-          a.href = "index.php?uc=accueil&action=consulter&id="+items[2].id;
+          a.href = "index.php?uc=accueil&action=consulter&id=" + items[2].id;
           break;
         case "🌹":
           winMessage = "Bravo, vous avez gagné une rose rouge à offrir!";
-          a.href = "index.php?uc=accueil&action=consulter&id="+items[3].id;
+          a.href = "index.php?uc=accueil&action=consulter&id=" + items[3].id;
           break;
         case "💐":
           winMessage = "Bravo, vous avez gagné un bouquet de roses!";
-          a.href = "index.php?uc=accueil&action=consulter&id="+items[4].id;
+          a.href = "index.php?uc=accueil&action=consulter&id=" + items[4].id;
           break;
       }
 
@@ -107,7 +116,6 @@ playButton.addEventListener("click", () => {
         } else if (index === 2) {
           setTimeout(() => {
             symbol.parentNode.classList.add("winner3");
-
           }, 30);
         }
       });
@@ -143,9 +151,9 @@ playButton.addEventListener("click", () => {
     } else {
       await delay(500);
       symbols.forEach((symbol) => {
-          const item = randomItem();
-          symbol.textContent = item.emoji;
-        });
+        const item = randomItem();
+        symbol.textContent = item.emoji;
+      });
 
       await delay(300); // display winning message
       checkWin();
@@ -153,5 +161,4 @@ playButton.addEventListener("click", () => {
   };
 
   generateCombination();
-
 });

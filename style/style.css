@@ -109,7 +109,6 @@
 
  .section_container {
      background-image: url(../image/background.svg);
-     background-repeat: no-repeat;
      width: 100%;
  }
 
@@ -231,7 +230,7 @@
      background-image: url(../image/event/REMERCIMENTS.svg);
      height: 378px;
      background-repeat: no-repeat;
-     background-size: cover;
+     background-size: contain;
      transition: ease-in-out .2s;
 
  }
@@ -239,7 +238,7 @@
  .div2 {
      grid-area: 1 / 2 / 2 / 3;
      background-image: url(../image/event/naissance.svg);
-     background-size: cover;
+     background-size: contain;
      height: 378px;
      background-repeat: no-repeat;
      transition: ease-in-out .2s;
@@ -261,7 +260,7 @@
      background-image: url(../image/event/amoursentiment.svg);
      height: 378px;
      background-repeat: no-repeat;
-     background-size: cover;
+     background-size: contain;
      transition: ease-in-out .2s;
 
  }
@@ -271,7 +270,7 @@
      background-image: url(../image/event/anniv.svg);
      height: 378px;
      background-repeat: no-repeat;
-     background-size: cover;
+     background-size: contain;
      transition: ease-in-out .2s;
 
  }
@@ -711,7 +710,7 @@
      padding: 10px;
      margin: 49px;
      border-radius: 15px;
-     width: 15%;
+
      box-shadow: var(--card_shadow);
 
  }
@@ -1317,42 +1316,6 @@
      margin-top: 10px;
  }
 
- /* media $************************ */
-
-
- @media screen and (max-width: 998px) {
-     nav {
-         display: none;
-     }
-
-     .logo {
-         right: 47%;
-     }
-
-
-     nav ul {
-         transform: translateX(-300%);
-         position: absolute;
-         top: 43px;
-         left: 0%;
-         transition: all 0.2s;
-         overflow: hidden;
-         transition: all 0.3s ease-out;
-         background-color: var(--color_secondary);
-     }
-
-     .logo {
-         width: 14%;
-         height: 14%;
-     }
-
-
-     .burger {
-         display: block !important;
-     }
- }
-
-
  .burger {
      top: 0 !important;
      position: relative;
@@ -1363,16 +1326,53 @@
      cursor: pointer;
  }
 
+ /* media $************************ */
+
+
+ @media screen and (max-width: 998px) {
+
+     .texte_blog {
+         display: block;
+         font-size: x-large;
+     }
+
+     .texte_blog img {
+         display: none;
+     }
+
+     .logo {
+         right: 42%;
+         width: 90px;
+         height: 59px;
+     }
+
+
+     .burger {
+         display: block !important;
+     }
+
+     .nav-links {
+         display: none;
+         position: absolute;
+         background-color: #fff;
+         width: 100%;
+         height: 100vh;
+         top: 0;
+         left: 0;
+         text-align: center;
+         transition: all 0.5s ease-in-out;
+     }
+
+     .nav-links.open {
+         display: block;
+     }
+ }
+
+
 
  /* responsive navbar */
 
  @media screen and (max-width: 998px) {
-
-     nav ul.show {
-         transform: translateX(0%);
-         transition: all ease-out 0.2s;
-         display: block;
-     }
 
 
      .boot {
@@ -1389,3 +1389,104 @@
      }
  }
 
+ @media screen and (max-width: 830px) {
+     .parent {
+         display: block;
+         margin-left: 34%;
+     }
+
+     .div1,
+     .div2,
+     .div3,
+     .div4,
+     .div5 {
+         display: block;
+         width: 250px;
+         height: 250px;
+
+     }
+
+     .para_banniere {
+         justify-content: center;
+     }
+
+     .para_banniere p {
+         font-size: large;
+     }
+
+     .btn_voir_fleur {
+         font-size: small;
+     }
+
+ }
+
+
+
+ @media screen and (max-width: 714px) {
+     .btn_bouquets {
+         font-size: small;
+     }
+     .explication_delivery p {
+        font-size: small;
+     }
+
+ }
+
+ @media screen and (max-width: 540px) {
+
+     .choice_event_title h1 {
+         font-size: small;
+     }
+
+     .parent {
+         margin: 41px;
+         margin-left: 12%;
+     }
+
+     .container_delivery {
+         flex-direction: column;
+         margin-left: 33%;
+     }
+
+     .etape {
+         display: inline-table;
+     }
+
+     .rond_un {
+         width: 61%;
+         height: 63px;
+     }
+
+     .rond {
+         width: 78%;
+
+     }
+
+     .descr_etape {
+         font-size: x-small;
+
+     }
+
+         .fleurs{
+            font-size:larger ;
+         }
+ }
+
+ @media screen and (max-width: 430px) {
+     .lien_fleur {
+         display: none;
+     }
+
+     .card_container {
+         justify-content: center;
+     }
+
+     .texte_blog {
+         display: block;
+         font-size: small;
+     }
+
+     .lien_blog {
+         font-size: small;
+     }
+ }

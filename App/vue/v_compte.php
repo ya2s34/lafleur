@@ -1,6 +1,4 @@
-<?=
-setlocale(LC_TIME, 'fr_FR.utf8','fra'); // Paramétrage de la localisation en français
-?>
+
 
 <h1 class="titre_page">Mon compte</h1>
 <div class="info_perso">

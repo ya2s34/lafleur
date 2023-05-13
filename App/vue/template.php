@@ -17,7 +17,7 @@
         <a href="index.php?page=accueil&action=consulter"><img class="logo" src="image/LOGO_pflr.png" alt="logo"></a>
         <!--  Menu haut-->
         <nav id="menu">
-            <ul>
+            <ul class="nav-links">
                 <li><a href="index.php?page=accueil&action=consulter">ACCUEIL</a></li>
                 <li><a href="index.php?uc=visite&action=voirFleur&type=Fleurs">FLEURS / BOUQUETS</a></li>
                 <li><a href="index.php?uc=panier&action=voirPanier">PANIER</a></li>
@@ -42,7 +42,7 @@
     <?php
     // Controleur de vues
     // Selon le cas d'utilisation, j'inclus un controleur ou simplement une vue
-    // include_once '../lafleur_filerouge/common/menu_burger.php';
+    include_once '../lafleur_filerouge/common/burger.php';
 
     switch ($uc) {
         case 'accueil':
